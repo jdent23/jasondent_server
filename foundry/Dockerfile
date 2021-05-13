@@ -6,7 +6,5 @@ RUN mkdir foundrydata && \
     tar -xzvf foundryvtt.tgz && \
     rm foundryvtt.tgz
 
-EXPOSE 80
-
-CMD node foundryvtt/resources/app/main.js --dataPath=foundrydata
+CMD node foundryvtt/resources/app/main.js --dataPath=foundrydata --port=80
  
