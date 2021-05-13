@@ -1,3 +1,6 @@
+# docker exec -it 311b7d606f44 /bin/bash
+
+
 snap install docker
 git config --global user.name "Jason Dent"
 git config --global user.email jdent23@utexas.edu

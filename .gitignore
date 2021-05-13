@@ -1,3 +1,4 @@
 *.swp
+*.tgz
 /foundry/foundryvtt
 /foundry/foundrydata

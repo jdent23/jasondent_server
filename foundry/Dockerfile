@@ -1,7 +1,12 @@
-FROM ubuntu:latest
-MAINTAINER Jason Dent jdent23@utexas.edu
+FROM node:latest
  
-RUN apt-get -y update
-RUN apt-get -y upgrade
-RUN apt-get install -y build-essential
+COPY foundryvtt.tgz ./
+
+RUN mkdir foundrydata && \
+    tar -xzvf foundryvtt.tgz && \
+    rm foundryvtt.tgz
+
+EXPOSE 80
+
+CMD node foundryvtt/resources/app/main.js --dataPath=foundrydata
  

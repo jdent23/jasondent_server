@@ -4,14 +4,39 @@ import argparse
 import docker
 
 def main(args):
-    print("Hello world")
 
-    if args.build:
-        print("Building container")
-        client = docker.from_env()
-        client.images.build(
-            path="./" + args.name + "/", tag=args.name + ":Dockerfile"
+    tag = args.name + ":Dockerfile"
+    client = docker.from_env()
+
+    if args.stop:
+        print("Stopping container")
+        containers = client.containers.list()
+        for container in containers:
+            if tag in container.image.tags:
+                container.stop()
+                break
+        print("Finished stopping container")
+    else:
+        if args.build:
+            print("Building container")
+            client = docker.from_env()
+            client.images.build(
+                path="./" + args.name + "/", tag=tag
+            )
+            print("Finished building container")
+
+        print("Starting container")
+        mount = docker.types.Mount(
+            target="/root/app/foundry/foundrydata",
+            source="foundrydata"
         )
+
+        container = client.containers.run(
+            tag,
+            detach=True,
+            mounts=[mount]
+        )
+
 
 if __name__ == "__main__":
     
