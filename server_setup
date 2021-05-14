@@ -1,7 +1,15 @@
 # docker exec -it 311b7d606f44 /bin/bash
 
 
-snap install docker
 git config --global user.name "Jason Dent"
 git config --global user.email jdent23@utexas.edu
+snap install docker
 python3 -m pip install docker
+python3 -m pip install Flask
+chmod 777 app.py foundry.py
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+rm -r aws
+rm awscliv2.zip
+aws configure

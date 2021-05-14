@@ -14,8 +14,8 @@ def build(client, tag):
 
 def start(client, tag):
     print("Starting container")
-    volumes = {'/root/app/foundry/foundrydata': {'bind': '/foundrydata', 'mode': 'rw'}}
-    ports = {"80/tcp":80}
+    volumes = {'/root/jasondent_server/foundry/foundrydata': {'bind': '/foundrydata', 'mode': 'rw'}}
+    ports = {"30000/tcp":30000}
 
     container = client.containers.run(
         tag,
